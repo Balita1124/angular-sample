@@ -1,0 +1,39 @@
+<div class="content-container">
+  <div class="content-area">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">
+          Wild Animals List
+        </div>
+      </div>
+      <div class="card-block">
+        <div class="card-title">
+          <button class="btn btn-info-outline">
+            <clr-icon shape="add-text"></clr-icon>Add
+          </button>
+        </div>
+        <div class="text">
+          <clr-datagrid (clrDgRefresh)="refresh($event)">
+            <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
+            <clr-dg-column [clrDgField]="'category'">Category</clr-dg-column>
+            <clr-dg-column [clrDgField]="'area'">Area</clr-dg-column>
+
+            <clr-dg-row *clrDgItems="let item of paginatedData">
+              <clr-dg-cell>{{ item.name }}</clr-dg-cell>
+              <clr-dg-cell>{{ item.category }}</clr-dg-cell>
+              <clr-dg-cell>{{ item.area }}</clr-dg-cell>
+            </clr-dg-row>
+
+            <clr-dg-footer>
+              <clr-dg-pagination [clrDgPageSize]="pageSize" [clrDgTotalItems]="totalItems"
+                (clrDgPageChange)="onPageChange($event)">
+                <clr-dg-page-size [clrPageSizeOptions]="[5, 10, 20]">Items per page</clr-dg-page-size>
+                {{currentPage}} / {{totalPages}}
+              </clr-dg-pagination>
+            </clr-dg-footer>
+          </clr-datagrid>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
